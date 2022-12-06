@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<Pikachu>
+    <name>Pikachu</name>
+    <type>Electrico</type>
+    <abilities>
+        <ability>static</ability>
+        <ability>lightning-rod</ability>
+    </abilities>
+    <baseStats>
+        <HP>35</HP>
+        <ATT>40</ATT>
+        <DF>40</DF>
+        <SPATT>50</SPATT>
+        <SPDF>50</SPDF>
+        <SPD>90</SPD>
+    </baseStats>
+</Pikachu>

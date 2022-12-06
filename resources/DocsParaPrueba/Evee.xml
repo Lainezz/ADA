@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<Evee>
+    <name>Evee</name>
+    <type>Normal</type>
+    <abilities>
+        <ability>cuteness</ability>
+        <ability>fluffyness</ability>
+    </abilities>
+    <baseStats>
+        <HP>20</HP>
+        <ATT>30</ATT>
+        <DF>30</DF>
+        <SPATT>20</SPATT>
+        <SPDF>60</SPDF>
+        <SPD>100</SPD>
+    </baseStats>
+</Evee>

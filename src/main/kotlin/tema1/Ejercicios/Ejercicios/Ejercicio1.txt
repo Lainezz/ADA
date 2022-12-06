@@ -1,0 +1,27 @@
+Ejercicio 1
+
+Se ha de crear una pequeña aplicación que permita leer y escribir archivos de configuración. Se deben tener en cuenta
+las siguientes consideraciones:
+a)	Se especifica que la ruta donde estarán almacenados los archivos de configuración será “user.dir”/resources/
+    o	El nombre del archivo de configuración será configuracion.conf
+    o	Se debe tener en cuenta los distintos sistemas operativos donde se ejecutará la aplicación.
+    Diferentes file.separator
+b)	Las “keys” que contendrá el archivo de configuración son:
+    o	user (String)
+    o	password (String)
+    o	server (String)
+    o	port (String)
+c)	Por motivos de seguridad, la contraseña se debe escribir en el fichero de configuración cifrada. El algoritmo de
+cifrado usado para tal propósito es el siguiente:
+    o	Cada letra de la contraseña original será reemplazada por otra letra que se encuentra un número fijo de
+    posiciones más adelante en la tabla de código ASCII. Ese número de posiciones se ha determinado a 3.
+    o	Por ejemplo:
+        	Carácter “a” -> Código ASCII 97 ->cifrado-> Código ASCII 100 -> Carácter cifrado “d”
+        	Carácter “z” -> Código ASCII 122 ->cifrado-> Código ASCII 125 -> Carácter cifrado “}”
+d)	Se deben incluir dos funciones para cifrar y descifrar la contraseña.
+e)	La aplicación tratará con el usuario por consola, se debe crear un menú para interaccionar con el usuario. En este
+menú se podrá:
+    o	Mostrar por pantalla la lista de keys + valores del archivo de configuración
+    o	Opción para modificar uno de los campos del archivo de configuración
+        	Si se opta por modificar la contraseña, se debe pedir la antigua contraseña para poder ser modificada.
+    o	Opción terminar el programa

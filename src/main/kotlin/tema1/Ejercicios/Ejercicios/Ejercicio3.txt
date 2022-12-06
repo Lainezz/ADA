@@ -1,0 +1,10 @@
+Ejercicio 3
+
+Se ha de crear una pequeña aplicación que, dado un personaje y unos tags de ese personaje, se busque esa información
+dada dentro del XML, la almacene en una estructura de datos y finalmente la muestre por pantalla
+
+Los datos que sabemos del XML son que:
+- Existe una etiqueta con el nombre del personaje.
+- Toda la información a buscar está contenida dentro del personaje
+
+La aplicación debe buscar esa información de forma recursiva.

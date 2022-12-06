@@ -1,0 +1,80 @@
+*Ejercicio 1*
+Acceso a properties.
+Implementar un método que reciba por params dos Strings, uno con el nombre de usuario y otro con la password.
+El método devuelve true o false dependiendo de si la autenticación ha sido correcta o no.
+True -> La autenticación ha sido correcta
+False -> La autenticación no ha sido correcta
+Para que la autenticación sea correcta, usuario y password deben coincidir con lo almacenado en el archivo properties
+
+
+*Ejercicio 2*
+Implementar un método que reciba por params un String con el nombre de un pokémon
+y que devuelva un objeto de tipo Pokémon con todos los campos rellenos junto con un código
+de respuesta.
+    * (200 o 404) -> 200 significa que se ha encontrado, 404 significa que no se ha encontrado
+    * El método no debe distinguir entre mayúsculas y minúsculas
+
+*Ejercicio 3*
+Implementar un método que reciba por params un objeto de tipo Pokemon
+y que construya un XML con el nombre del pokemon
+-nombreDelPokemon-.xml
+
+<nombreDelPokemon>
+    <name>nombreDelPokemon</name>
+    <type>tipoPpalDelPoke</type>
+    <abilities>
+        <ability>habilidad1</ability>
+        ...
+    </abilities>
+    <baseStats>
+        <HP>70</HP>
+        <ATK>77</ATK>
+        <DEF>60</DEF>
+        <SPD>108</SPD>
+        <SATK>97</SATK>
+        <SDEF>60</SDEF>
+    </baseStats>
+</nombreDelPokemon>
+
+*Ejercicio 4*
+Crear un main que realice pruebas sobre los métodos creados.
+
+Ejer1****
+En caso de que el user esté autorizado, mostrar "Bienvenid@ 'nombre del usuario'
+En caso de que no esté autorizado (password o user incorrecto), mostrar 'Acceso denegado'
+- Realizar casos de prueba para:
+    - user-"diego" pass-"1234567890" -> "Bienvenid@ diego"
+    - user-"diego" pass-"123456789" -> "Acceso denegado"
+    - user-"h4ck3r" pass-"1234567890" -> "Acceso denegado"
+
+Ejer2****
+En caso de que se encuentre, el programa debe mostrar el código y la información del pokemon.
+En caso de que no se encuentre, se debe mostrar "404, Pokemon no encontrado"
+ - Realizar casos de prueba para:
+    - "BulbasauR" -> cod 200
+    - "GALVANTULA" -> cod 200
+    - "Charmeleon" -> cod 404
+    - "BLAZE" -> cod 404
+
+ Ejer3***
+ Crear 3 pokemon de tipo Pokemon, rellenar sus datos de forma libre y crear 3 archivos XML para esos pokemon
+ **NOTA** No hace falta leer el XML por código... miráis los datos, creáis el objeto, y escribís el XML del ejercicio
+  - Pikachu
+  - Butterfree
+  - Evee
+  (Info se puede encontrar en el XML del pokemon)
+
+*Ejercicio 5*
+Responde a las siguientes preguntas.
+a)	¿Qué clase es la más adecuada para leer o escribir datos en un archivo de configuración? ¿Por qué?
+b)	¿Qué clase usarías si quisieras escribir datos en un fichero de texto plano sin formato? ¿Por qué?
+c)	¿A qué clase pertenece el método “.parse()” que utilizamos para “parsear” el contenido de un XML? ¿Qué nos devuelve dicho método?
+
+****************************************
+**Especificaciones de la clase pokemon**
+****************************************
+- Debe tener:
+    - Nombre del pokemon
+    - Tipo principal del pokemon
+    - Lista con las habilidades del pokemon
+    - Mapa con las stats base del pokemon

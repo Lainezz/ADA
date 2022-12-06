@@ -1,0 +1,4 @@
+Prueba de escritura
+Línea 2 del documento
+Línea 3 del documento ñ
+Última línea

@@ -1,0 +1,61 @@
+Ejercicio 4
+
+Nos piden hacer una API para gestionar la búsqueda básica de información de todos los personajes
+del universo Marvel.
+
+Se deben proporcionar tantos métodos como especificaciones se indiquen.
+Todos estos métodos deben estar incluídos en una clase llamada: "APIMarvel"
+
+ESPECIFICACIONES DE CLASES
+Personaje.class
+id (int, optional): The unique ID of the character resource.,
+name (string, optional): The name of the character.,
+description (string, optional): A short bio or description of the character.,
+comics (ComicList, optional): A resource list containing comics which feature this character.
+
+Comic.class
+id (int, optional): The unique ID of the comic resource.,
+title (string, optional): The name of the comic.,
+description (string, optional): The description of the comic.
+
+Codigo.class
+ok (Number): variable no modificable con valor 200
+notFound (Number): variable no modificable con valor 404
+
+Listado de métodos
+- Método que dado un nombre de un personaje, te devuelve un objeto de tipo Personaje con toda la información
+de dicho personaje junto con un código de respuesta.
+
+- Método que dado un nombre de un personaje, te devuelve una Lista de todos los comics en los que aparece ese
+personaje. En ese caso el método devuelve una lista con objetos de tipo Comic
+    *NOTA: El id del cómic está contenido en la última parte del tag "resourceURI"
+
+- Método que dado el id de un comic, te devuelve un objeto de tipo Comic con la información que se especifica
+junto con un código de respuesta
+
+- Método que dados 2 personajes, te devuelve cuál de ellos es más popular dentro del universo Marvel
+    *NOTA: La popularidad se mide por el número de comics en los que aparece
+
+- Método que cuando es llamado, te genera un documento XML que contiene únicamente la información
+que se especifica de cada personaje y comic. Es decir, genera un documento XML de tipo:
+<personajes>
+    <personaje>
+        <id>xxx</id>
+        <name>xxx</name>
+        <description>xxx</description>
+        <comics>
+            <comic>
+                <id>...</id>
+                <title>...</title>
+                <description>...</description>
+            </comic>
+            <comic>
+                <id>...</id>
+                <title>...</title>
+                <description>...</description>
+            </comic>
+        </comics>
+    </personaje>
+</personajes>
+
+

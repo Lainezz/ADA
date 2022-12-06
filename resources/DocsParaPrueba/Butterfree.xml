@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<Butterfree>
+    <name>Butterfree</name>
+    <type>Bicho</type>
+    <abilities>
+        <ability>volar</ability>
+        <ability>ser cute</ability>
+    </abilities>
+    <baseStats>
+        <HP>45</HP>
+        <ATT>50</ATT>
+        <DF>60</DF>
+        <SPATT>60</SPATT>
+        <SPDF>50</SPDF>
+        <SPD>120</SPD>
+    </baseStats>
+</Butterfree>

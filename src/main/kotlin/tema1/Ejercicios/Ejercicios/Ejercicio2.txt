@@ -1,0 +1,24 @@
+Ejercicio 2
+
+Se especifica que se debe crear una pequeña aplicación que interactúe con el usuario por consola. Esta aplicación debe
+escribir en un archivo de texto plano los datos de un personaje del LoL específico. El usuario indica el personaje que
+desea visualizar, y la aplicación genera un documento de texto plano (extensión .txt) con la información deseada.
+Dicha información la busca dentro de un archivo XML (personajesLol.xml).
+
+a)	Se muestra un menú de interacción con el usuario, donde se le permitirá buscar un personaje, o salir de la
+aplicación.
+b)	El usuario, si escoge buscar un personaje, debe poder introducir el nombre de un personaje para buscarlo.
+c)	El programa realiza la búsqueda del personaje dentro del archivo XML haciendo uso de la implementación del DOM
+correspondiente.
+    o  	Si no se encuentra el personaje indicado, se le mostraría un mensaje al usuario indicándole que no se ha podido
+    encontrar. SE LE DA LA OPORTUNIDAD DE CAMBIAR LOS PARÁMETROS DE BÚSQUEDA.
+    o	Si se encuentra el personaje, entonces se le indica al usuario que se ha encontrado y que se está generando un
+    informe.
+d)	El programa, cuando encuentra el personaje, escribe en un archivo de texto plano (.txt) los siguientes datos:
+    o	name (nombre del pj)
+    o	title (título del pj)
+    o	blurb (lore del pj)
+    o	tags (rol principal del pj)
+        	Nota: Puede haber varios tags; habría que escoger el primer tag, es decir, el rol principal.
+e)	El archivo se debe almacenar en una carpeta (con nombre “personajes”) y el archivo se debe nombrar
+“nombreDelPersonaje.txt” (siendo el nombre del personaje, el propio nombre del personaje buscado)
