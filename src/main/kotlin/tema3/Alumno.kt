@@ -1,24 +1,25 @@
 package tema3
 
-import jakarta.persistence.Column
-import jakarta.persistence.Entity
-import jakarta.persistence.Id
-import jakarta.persistence.Table
+import jakarta.persistence.*
 
 @Entity
-@Table(name="alumnos")
+@Table(name = "alumnos")
 class Alumno(
     @Id
-    @Column(name="dni")
+    @Column(name = "dni")
     var dni: String,
 
-    @Column(name="nombre")
+    @Column(name = "nombre")
     var nombre: String,
 
-    @Column(name="edad")
+    @Column(name = "edad")
     var edad: Int,
 
-    @Column(name="ciudad")
-    var ciudad: String
-    ) {
+    @Column(name = "ciudad")
+    var ciudad: String,
+
+    //@OneToOne(cascade = [CascadeType.ALL])
+    //@JoinColumn(name = "id_direccion")
+    //var direccion: Direccion
+) {
 }

@@ -27,29 +27,120 @@ fun main() {
      */
     val manager: EntityManager = emf.createEntityManager()
 
-    var listaAlumnos = manager.createQuery("FROM Alumno").resultList as List<Alumno>
-    listaAlumnos.forEach {
-        println(it.nombre)
-    }
+    listarAlumnos()
 
     //En este punto ya estaríamos "conectados a la base de datos"
-    val julia: Alumno = Alumno("76412387K", "Julia", 35, "Mojacar")
-    //JULIA es un OBJETO TRANSIENT en este punto
+    var julio: Alumno = Alumno("76412387A", "Julio", 35, "Mojacar")
+    //JULIO es un OBJETO TRANSIENT en este punto
     //QUIERE DECIR, que aún no está "ligado" o "linkeado" a la base de datos
 
     //Iniciamos una transacción
     manager.transaction.begin()
+    manager.persist(julio) //AHORA... ES UN OBJETO PERSIST (persistido)
+    julio.nombre = "Julia" //Si realizamos cualquier cambio a este objeto, también se estaría cambiando en la Base de Datos
+    manager.transaction.commit()
+    //Cambios commiteados a la BDD
+    listarAlumnos()
 
-    manager.persist(julia) //AHORA... ES UN OBJETO PERSIST (persistido)
-
-    julia.nombre="Julio" //Si realizamos cualquier cambio a este objeto, también se estaría cambiando en la Base de Datos
-
+    /*
+    PARA BUSCAR UN ALUMNO. Usamos el método .find()
+    .find() nos devuelve un objeto del tipo que le indiquemos, PERSISTED (o MANAGED).
+    Cuando está persisted, ya sabemos que cualquier cambio que realicemos a ese objeto, se verá reflejado
+    en la base de datos
+     */
+    var alumno: Alumno = manager.find(Alumno::class.java, "12345678Z")
+    manager.transaction.begin()
+    alumno.nombre = "Menganito"
     manager.transaction.commit()
 
-    println("***********")
+    /*
+    Para que esa entidad deje de ser PERSISTED (MANAGED), tenemos que "detachearla" de la base de datos.
+    Cuando hacemos un .detach(), lo que hacemos es convertir esa entidad managed en un objeto normal y corriente
+    de nuestra aplicacion
+    Si hacemos cualquier cambio en ese objeto, vemos que no quedará reflejado (PERSISTIDO) en la BDD,
+     */
+    manager.transaction.begin()
+    manager.detach(alumno) //Convierto a alumno, otra vez en Transient. En este punto, los cambios a alumno ya no afectarían en la BDD
+    alumno.nombre = "XXXXXXXXXXX"
+    manager.transaction.commit()
 
-    listaAlumnos = manager.createQuery("FROM Alumno").resultList as List<Alumno>
-    listaAlumnos.forEach {
-        println(it.nombre)
+    listarAlumnos()
+
+    /*
+    ¿Qué pasa si ahora queremos volver a trabajar con ese alumno y que esté persisted?
+    Es decir, qué pasa si hago cambios a ese alumno y quiero reflejar esos cambios en la BDD
+    No puedo hacer un .persist() porque la entidad ya existe en la BDD y eso intenta insertar
+    UTILIZO .merge().
+     */
+    manager.transaction.begin()
+    alumno = manager.merge(alumno) //Esto nos devuelve el alumno de la BDD pero mantiene los cambios realizados en el objeto
+    manager.transaction.commit()
+
+    //Si vemos la BDD en este punto, veremos que el nombre del alumno es XXXXXXX
+
+    /*
+    Para eliminar registros de la base de datos, la manera más sencilla es hacerlo mediante el uso
+    de .remove()
+    IMPORTANTE, para eliminar registros de la BDD, lo que intentemos eliminar debe estar en la BDD (obviamente)
+     */
+    manager.transaction.begin()
+    var julia: Alumno = Alumno("76412387A", "Julia", 35, "Mojacar") //Está transient
+    julia = manager.merge(julia) //Primero tendríamos que convertir ese objeto transient a persisted
+    manager.remove(julia) //Una vez persisted, ya podemos eliminarlo
+    manager.transaction.commit()
+
+    manager.transaction.begin()
+    var diego: Alumno = manager.find(Alumno::class.java, "72716745B")
+    manager.remove(diego)
+    manager.transaction.commit()
+
+
+    manager.close()
+}
+
+/**
+ * Funcion para insertar un alumno en la base de datos
+ */
+fun insertAlumno(alumno: Alumno) {
+    val emf: EntityManagerFactory = Persistence.createEntityManagerFactory("PersistenciaAlumno")
+    val manager: EntityManager = emf.createEntityManager()
+
+    try {
+        manager.transaction.begin()
+        manager.persist(alumno)
+        manager.transaction.commit()
+    } catch (e: Exception) {
+        manager.transaction.rollback()
+        println("Se ha producido un error, rollback aplicado")
+
+    } finally {
+        manager.close()
     }
+}
+
+fun buscarAlumno(dni: String) {
+    val emf: EntityManagerFactory = Persistence.createEntityManagerFactory("PersistenciaAlumno")
+    val manager: EntityManager = emf.createEntityManager()
+
+    manager.transaction.begin()
+    var alumno: Alumno = manager.find(Alumno::class.java, dni)
+
+    println(alumno.nombre)
+    manager.transaction.commit()
+    manager.close()
+}
+
+fun listarAlumnos() {
+    val emf: EntityManagerFactory = Persistence.createEntityManagerFactory("PersistenciaAlumno")
+    val manager: EntityManager = emf.createEntityManager()
+
+    println("*_____List Alumnos_______*")
+    val listaAlumnos = manager.createQuery("FROM Alumno").resultList as List<Alumno>
+    listaAlumnos.forEach {
+        println("${it.nombre} con dni: ${it.dni}.")
+    }
+    println("*_____FIN_______*")
+
+    manager.close()
+
 }
