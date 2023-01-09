@@ -1,4 +1,4 @@
-package tema3
+package tema3.hibernateContinuacion
 
 import jakarta.persistence.*
 
@@ -18,8 +18,11 @@ class Alumno(
     @Column(name = "ciudad")
     var ciudad: String,
 
-    //@OneToOne(cascade = [CascadeType.ALL])
-    //@JoinColumn(name = "id_direccion")
-    //var direccion: Direccion
+    @OneToOne(cascade = [CascadeType.ALL])
+    @JoinColumn(name= "id_direccion")
+    var direccion: Direccion,
+
+    //@OneToMany(mappedBy = "alumno", cascade = [CascadeType.ALL])
+    //var asignaturas: List<Asignatura> = mutableListOf<Asignatura>()
 ) {
 }

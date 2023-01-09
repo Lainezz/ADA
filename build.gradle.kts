@@ -16,7 +16,7 @@ repositories {
 
 dependencies {
     testImplementation(kotlin("test"))
-    implementation("org.hibernate.orm:hibernate-core:6.1.5.Final")
+    implementation("org.hibernate.orm:hibernate-core:6.1.6.Final")
     implementation("com.mysql:mysql-connector-j:8.0.31")
 }
 

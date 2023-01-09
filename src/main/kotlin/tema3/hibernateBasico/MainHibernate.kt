@@ -1,7 +1,7 @@
 import jakarta.persistence.EntityManager
 import jakarta.persistence.EntityManagerFactory
 import jakarta.persistence.Persistence
-import tema3.Alumno
+import tema3.hibernateBasico.Alumno
 
 fun main() {
     /*
@@ -30,14 +30,14 @@ fun main() {
     listarAlumnos()
 
     //En este punto ya estaríamos "conectados a la base de datos"
-    var julio: Alumno = Alumno("76412387A", "Julio", 35, "Mojacar")
+    var julio: Alumno = Alumno("12345678Z", "PruebaAlumno", 40, "Mojacar")
     //JULIO es un OBJETO TRANSIENT en este punto
     //QUIERE DECIR, que aún no está "ligado" o "linkeado" a la base de datos
 
     //Iniciamos una transacción
     manager.transaction.begin()
     manager.persist(julio) //AHORA... ES UN OBJETO PERSIST (persistido)
-    julio.nombre = "Julia" //Si realizamos cualquier cambio a este objeto, también se estaría cambiando en la Base de Datos
+    //julio.nombre = "Julia" //Si realizamos cualquier cambio a este objeto, también se estaría cambiando en la Base de Datos
     manager.transaction.commit()
     //Cambios commiteados a la BDD
     listarAlumnos()
@@ -48,6 +48,7 @@ fun main() {
     Cuando está persisted, ya sabemos que cualquier cambio que realicemos a ese objeto, se verá reflejado
     en la base de datos
      */
+    /*
     var alumno: Alumno = manager.find(Alumno::class.java, "12345678Z")
     manager.transaction.begin()
     alumno.nombre = "Menganito"
@@ -88,13 +89,7 @@ fun main() {
     julia = manager.merge(julia) //Primero tendríamos que convertir ese objeto transient a persisted
     manager.remove(julia) //Una vez persisted, ya podemos eliminarlo
     manager.transaction.commit()
-
-    manager.transaction.begin()
-    var diego: Alumno = manager.find(Alumno::class.java, "72716745B")
-    manager.remove(diego)
-    manager.transaction.commit()
-
-
+*/
     manager.close()
 }
 
